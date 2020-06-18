@@ -15,7 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MoviesRepository {
+public class MoviesRemoteRepository {
     private final String TAG = "myDebug";
 
     private MutableLiveData<List<MoviesResponse>> mMoviesResponseMutableLiveData = new MutableLiveData<>();

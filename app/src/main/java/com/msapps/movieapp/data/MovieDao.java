@@ -19,7 +19,7 @@ public interface MovieDao {
     @Insert
     void addAllMovies(List<MoviesResponse> moviesResponseList);
 
-    @Query("select * from movies")
+    @Query("select * from movies ORDER BY movie_release_year DESC")
     LiveData<List<MoviesResponse>> getAllMoviesFromLocalDB();
 
     @Query("select * from movies where movie_title ==:title")

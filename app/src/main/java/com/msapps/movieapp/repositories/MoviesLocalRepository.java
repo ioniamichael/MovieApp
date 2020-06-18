@@ -12,13 +12,13 @@ import com.msapps.movieapp.model.MoviesResponse;
 import java.util.Arrays;
 import java.util.List;
 
-public class DataBaseRepository {
+public class MoviesLocalRepository {
 
     private MovieDao movieDao;
 
     private LiveData<List<MoviesResponse>> movies;
 
-    public DataBaseRepository(Application application) {
+    public MoviesLocalRepository(Application application) {
         MoviesAppDatabase database = MoviesAppDatabase.getInstance(application);
         movieDao = database.getMovieDAO();
     }
