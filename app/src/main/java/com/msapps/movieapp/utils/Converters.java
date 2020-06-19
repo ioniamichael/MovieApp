@@ -1,4 +1,4 @@
-package com.msapps.movieapp;
+package com.msapps.movieapp.utils;
 
 import androidx.room.TypeConverter;
 

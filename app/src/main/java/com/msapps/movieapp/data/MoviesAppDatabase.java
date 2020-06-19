@@ -10,7 +10,7 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.msapps.movieapp.Converters;
+import com.msapps.movieapp.utils.Converters;
 import com.msapps.movieapp.model.MoviesResponse;
 
 @Database(entities = {MoviesResponse.class}, version = 1)

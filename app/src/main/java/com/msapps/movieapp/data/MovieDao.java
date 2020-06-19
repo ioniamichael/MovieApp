@@ -23,6 +23,6 @@ public interface MovieDao {
     LiveData<List<MoviesResponse>> getAllMoviesFromLocalDB();
 
     @Query("select * from movies where movie_title ==:title")
-    LiveData<MoviesResponse> getMovie(String title);
+    MoviesResponse getMovie(String title);
 
 }

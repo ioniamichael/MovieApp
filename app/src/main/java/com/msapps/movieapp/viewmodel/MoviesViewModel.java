@@ -33,13 +33,16 @@ public class MoviesViewModel extends AndroidViewModel {
         return mMovieResponseLiveData;
     }
 
-    public void addAllMoviesToLocalDB(List<MoviesResponse> moviesResponses){
+    public void addAllMoviesToLocalDB(List<MoviesResponse> moviesResponses) {
         mMoviesLocalRepository.addAllMovie(moviesResponses);
     }
 
-    public void addMovie(MoviesResponse movie){
+    public void addMovie(MoviesResponse movie) {
         mMoviesLocalRepository.addMovie(movie);
     }
 
+    public MoviesResponse getMovieByTitle(String movieTitle) {
+        return mMoviesLocalRepository.getMovieByTitle(movieTitle);
+    }
 
 }

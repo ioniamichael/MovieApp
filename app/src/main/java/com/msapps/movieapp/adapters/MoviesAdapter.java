@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -20,11 +21,20 @@ import java.util.List;
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder> {
 
     private Context mContext;
-    private List<MoviesResponse> moviesResponseList;
+    private List<MoviesResponse> mMoviesResponseList;
+    private OnMovieItemClickListener iOnMovieItemClickListener;
 
-    public MoviesAdapter(Context mContext, List<MoviesResponse> moviesResponseList) {
+    public interface OnMovieItemClickListener{
+        void onMovieItemClick(MoviesResponse moviesResponse);
+    }
+
+    public MoviesAdapter(Context mContext, List<MoviesResponse> mMoviesResponseList) {
         this.mContext = mContext;
-        this.moviesResponseList = moviesResponseList;
+        this.mMoviesResponseList = mMoviesResponseList;
+    }
+
+    public void setOnMovieItemClickListener(OnMovieItemClickListener iOnMovieItemClickListener) {
+        this.iOnMovieItemClickListener = iOnMovieItemClickListener;
     }
 
     @NonNull
@@ -36,21 +46,31 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
 
     @Override
     public void onBindViewHolder(@NonNull MoviesViewHolder holder, int position) {
-        MoviesResponse response = moviesResponseList.get(position);
-        holder.mRootView.setTag(position);
+        MoviesResponse response = mMoviesResponseList.get(position);
 
         Glide.with(mContext)
                 .load(response.getImage())
+                .placeholder(ContextCompat.getDrawable(mContext, R.drawable.place_holder_image))
                 .into(holder.mIVMovieImage);
 
         holder.mTVMovieTitle.setText(response.getTitle());
         holder.mTVReleaseYear.setText(String.valueOf(response.getReleaseYear()));
 
+        holder.mRootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (iOnMovieItemClickListener !=null){
+                    iOnMovieItemClickListener.onMovieItemClick(response);
+                }
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
-        return moviesResponseList.size();
+        return mMoviesResponseList.size();
     }
 
     public class MoviesViewHolder extends RecyclerView.ViewHolder {

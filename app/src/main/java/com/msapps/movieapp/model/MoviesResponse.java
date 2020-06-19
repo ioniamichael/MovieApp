@@ -76,6 +76,15 @@ public class MoviesResponse implements Parcelable {
     }
 
     @Ignore
+    public void setMovie(String title, String image, double rating, int releaseYear, List<String> genre){
+        this.title = title;
+        this.image = image;
+        this.rating = rating;
+        this.releaseYear = releaseYear;
+        this.genre = genre;
+    }
+
+    @Ignore
     protected MoviesResponse(Parcel in) {
         this.title = ((String) in.readValue((String.class.getClassLoader())));
         this.image = ((String) in.readValue((String.class.getClassLoader())));

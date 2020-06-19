@@ -9,13 +9,11 @@ import com.msapps.movieapp.data.MovieDao;
 import com.msapps.movieapp.data.MoviesAppDatabase;
 import com.msapps.movieapp.model.MoviesResponse;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class MoviesLocalRepository {
 
     private MovieDao movieDao;
-
     private LiveData<List<MoviesResponse>> movies;
 
     public MoviesLocalRepository(Application application) {
@@ -65,4 +63,9 @@ public class MoviesLocalRepository {
             return null;
         }
     }
+
+    public MoviesResponse getMovieByTitle(String movieTitle) {
+        return movieDao.getMovie(movieTitle);
+    }
+
 }
