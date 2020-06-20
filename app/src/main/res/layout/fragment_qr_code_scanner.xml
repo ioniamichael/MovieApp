@@ -13,12 +13,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="50dp">
+        android:padding="40dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
             android:layout_weight="1"
+            android:elevation="4dp"
+            android:translationZ="10dp"
             app:cardCornerRadius="10dp">
 
             <SurfaceView
@@ -36,7 +39,7 @@
             android:gravity="center"
             android:padding="20dp"
             android:text="@string/qr_text_placeHolder"
-            android:textColor="@color/black"
+            android:textColor="@color/background_color"
             android:textSize="24sp"
             android:textStyle="bold" />
 

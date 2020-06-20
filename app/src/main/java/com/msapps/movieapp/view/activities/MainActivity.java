@@ -19,7 +19,7 @@ import com.msapps.movieapp.view.fragments.QRCodeScannerFragment;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, QRCodeScannerFragment.OnQACodeFragmentStateChangedListener {
 
     private ImageButton mIBScanQRCode;
-    private FrameLayout qr_screen_container;
+    private FrameLayout qr_screen_container,fragment_container;
 
     private static final int REQUEST_CAMERA_PERMISSION = 100;
 
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initViews() {
+        fragment_container = findViewById(R.id.fragment_container);
         mIBScanQRCode = findViewById(R.id.ibScanQRCode);
         qr_screen_container = findViewById(R.id.qr_screen_container);
         mIBScanQRCode.setOnClickListener(this);
@@ -53,13 +54,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onQACodeFragmentResumed() {
+        mIBScanQRCode.setVisibility(View.GONE);
         qr_screen_container.setActivated(true);
     }
 
     @Override
     public void onQACodeFragmentDestroyed() {
         qr_screen_container.setActivated(false);
+        fragment_container.animate().alpha(1f).setDuration(700);
+        mIBScanQRCode.setVisibility(View.VISIBLE);
     }
+
 
     @Override
     public void onClick(View v) {
@@ -71,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void openQRScannerFragment() {
-        qr_screen_container.setActivated(true);
+        fragment_container.animate().alpha(0.2f).setDuration(500);
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
