@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -69,6 +71,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
 
                 if (iOnMovieItemClickListener != null) {
                     iOnMovieItemClickListener.onMovieItemClick(response);
+
                 }
             }
         });
@@ -104,6 +107,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
             view.startAnimation(anim);
             lastPosition = position;
         }
+    }
+
+    private void setZoomInAnimation(View view) {
+        Animation zoomIn = AnimationUtils.loadAnimation(mContext, R.anim.zoom_in);// animation file
+        view.startAnimation(zoomIn);
     }
 
 }

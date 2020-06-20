@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,19 +55,24 @@ public class MovieDetailsFragment extends Fragment {
     }
 
     @SuppressLint("SetTextI18n")
-    private void setMovieDetails(){
+    private void setMovieDetails() {
         Glide.with(getContext())
                 .load(mMoviesResponse.getImage())
                 .placeholder(ContextCompat.getDrawable(getContext(), R.drawable.place_holder_image))
                 .into(mIVMovieImage);
         mTVMovieTitle.setText(mMoviesResponse.getTitle());
         mTVMovieRating.setText(getString(R.string.rating) + mMoviesResponse.getRating());
-        mTVMovieReleaseYear.setText(getString(R.string.release_year)+ mMoviesResponse.getReleaseYear());
+        mTVMovieReleaseYear.setText(getString(R.string.release_year) + mMoviesResponse.getReleaseYear());
         StringBuilder builder = new StringBuilder();
-        for (String s : mMoviesResponse.getGenre()){
-            builder.append(s);
-            builder.append(" ");
+        for (String s : mMoviesResponse.getGenre()) {
+            if (s != mMoviesResponse.getGenre().get(mMoviesResponse.getGenre().size() - 1)) {
+                builder.append(s);
+                builder.append(" ♦ ");
+            } else {
+                builder.append(s);
+            }
         }
+
         mTVMovieGenre.setText(getString(R.string.genre) + builder.toString().trim());
 
     }
