@@ -16,12 +16,11 @@ import com.bumptech.glide.Glide;
 import com.msapps.movieapp.R;
 import com.msapps.movieapp.model.MoviesResponse;
 
-public class MovieDetailsFragment extends Fragment implements View.OnClickListener {
+public class MovieDetailsFragment extends Fragment{
 
     private View view;
     private MoviesResponse mMoviesResponse;
     private ImageView mIVMovieImage;
-    private ImageButton mIBCloseMovieDetailsFragment;
     private TextView mTVMovieTitle, mTVMovieRating, mTVMovieReleaseYear, mTVMovieGenre;
 
     @Override
@@ -35,8 +34,6 @@ public class MovieDetailsFragment extends Fragment implements View.OnClickListen
 
 
     private void initViews() {
-        mIBCloseMovieDetailsFragment = view.findViewById(R.id.ibCloseMovieDetailsFragment);
-        mIBCloseMovieDetailsFragment.setOnClickListener(this);
         mIVMovieImage = view.findViewById(R.id.ivMovieImage);
         mTVMovieTitle = view.findViewById(R.id.tvMovieTitle);
         mTVMovieRating = view.findViewById(R.id.tvMovieRating);
@@ -68,19 +65,5 @@ public class MovieDetailsFragment extends Fragment implements View.OnClickListen
         }
 
         mTVMovieGenre.setText(getString(R.string.genre) + builder.toString().trim());
-
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.ibCloseMovieDetailsFragment:
-                getFragmentManager()
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
-                        .remove(this)
-                        .commit();
-                break;
-        }
     }
 }

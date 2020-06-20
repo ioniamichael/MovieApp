@@ -18,16 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
-            <ImageButton
-                android:elevation="10dp"
-                android:layout_marginTop="40dp"
-                android:id="@+id/ibCloseMovieDetailsFragment"
-                android:layout_width="50dp"
-                android:background="@null"
-                android:layout_height="50dp"
-                android:src="@android:drawable/ic_delete" />
-
             <ImageView
                 android:layout_marginTop="30dp"
                 android:id="@+id/ivMovieImage"

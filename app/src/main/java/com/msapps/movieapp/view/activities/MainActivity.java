@@ -16,7 +16,9 @@ import com.msapps.movieapp.R;
 import com.msapps.movieapp.view.fragments.MoviesListFragment;
 import com.msapps.movieapp.view.fragments.QRCodeScannerFragment;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, QRCodeScannerFragment.OnQACodeFragmentStateChangedListener {
+public class MainActivity extends AppCompatActivity implements
+        View.OnClickListener,
+        QRCodeScannerFragment.OnQACodeFragmentStateChangedListener {
 
     private ImageButton mIBScanQRCode;
     private FrameLayout qr_screen_container,fragment_container;
