@@ -89,6 +89,7 @@ public class QRCodeScannerFragment extends Fragment implements QRScanner.QRCodeI
     public void onPause() {
         super.onPause();
         qrScanner.getCameraSource().release();
+
     }
 
     @Override

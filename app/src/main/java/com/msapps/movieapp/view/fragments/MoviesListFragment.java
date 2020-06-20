@@ -63,11 +63,7 @@ public class MoviesListFragment extends Fragment {
         mAdapter = new MoviesAdapter(getContext(), moviesResponses);
         mRVMovies = view.findViewById(R.id.rvMovies);
         RecyclerView.LayoutManager layoutManager;
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            layoutManager = new GridLayoutManager(getContext(), 2);
-        } else {
-            layoutManager = new GridLayoutManager(getContext(), 3);
-        }
+        layoutManager = new GridLayoutManager(getContext(), 2);
         mRVMovies.setLayoutManager(layoutManager);
         mRVMovies.setAdapter(mAdapter);
         mAdapter.setOnMovieItemClickListener(new MoviesAdapter.OnMovieItemClickListener() {
@@ -85,6 +81,7 @@ public class MoviesListFragment extends Fragment {
                         .commit();
             }
         });
+        mAdapter.notifyDataSetChanged();
     }
 
 
