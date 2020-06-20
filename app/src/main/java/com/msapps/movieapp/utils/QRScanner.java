@@ -8,6 +8,7 @@ import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+
 import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.vision.CameraSource;
@@ -59,8 +60,7 @@ public class QRScanner {
                 try {
                     if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                         cameraSource.start(surfaceView.getHolder());
-                    }
-                    else {
+                    } else {
                         ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
 
                     }

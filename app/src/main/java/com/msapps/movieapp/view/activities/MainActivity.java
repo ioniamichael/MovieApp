@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 openQRScannerFragment();
             } else {
                 new AlertDialog.Builder(this)
-                        .setTitle("Camera permission")
-                        .setMessage("We need your permission to use camera.")
+                        .setTitle(R.string.title_camera_permission)
+                        .setMessage(R.string.message_camera_permission)
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);

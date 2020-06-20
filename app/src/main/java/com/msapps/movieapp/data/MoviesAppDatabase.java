@@ -10,6 +10,7 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.msapps.movieapp.R;
 import com.msapps.movieapp.utils.Converters;
 import com.msapps.movieapp.model.MoviesResponse;
 
@@ -23,7 +24,7 @@ public abstract class MoviesAppDatabase extends RoomDatabase {
 
     public static synchronized MoviesAppDatabase getInstance(Context context) {
         if (instance == null) {
-            instance = Room.databaseBuilder(context, MoviesAppDatabase.class, "MoviesDB")
+            instance = Room.databaseBuilder(context, MoviesAppDatabase.class, context.getString(R.string.movies_db))
                     .fallbackToDestructiveMigration() //If db version was changed it will deleted and created again
                     .addCallback(callback)
                     .build();

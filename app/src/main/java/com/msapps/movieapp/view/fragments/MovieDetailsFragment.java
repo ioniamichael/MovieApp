@@ -1,35 +1,27 @@
 package com.msapps.movieapp.view.fragments;
 
 import android.annotation.SuppressLint;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-
-import android.text.SpannableString;
-import android.text.style.ImageSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.msapps.movieapp.R;
 import com.msapps.movieapp.model.MoviesResponse;
 
-public class MovieDetailsFragment extends Fragment {
+public class MovieDetailsFragment extends Fragment implements View.OnClickListener {
 
     private View view;
     private MoviesResponse mMoviesResponse;
     private ImageView mIVMovieImage;
+    private ImageButton mIBCloseMovieDetailsFragment;
     private TextView mTVMovieTitle, mTVMovieRating, mTVMovieReleaseYear, mTVMovieGenre;
 
     @Override
@@ -43,6 +35,8 @@ public class MovieDetailsFragment extends Fragment {
 
 
     private void initViews() {
+        mIBCloseMovieDetailsFragment = view.findViewById(R.id.ibCloseMovieDetailsFragment);
+        mIBCloseMovieDetailsFragment.setOnClickListener(this);
         mIVMovieImage = view.findViewById(R.id.ivMovieImage);
         mTVMovieTitle = view.findViewById(R.id.tvMovieTitle);
         mTVMovieRating = view.findViewById(R.id.tvMovieRating);
@@ -75,5 +69,18 @@ public class MovieDetailsFragment extends Fragment {
 
         mTVMovieGenre.setText(getString(R.string.genre) + builder.toString().trim());
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.ibCloseMovieDetailsFragment:
+                getFragmentManager()
+                        .beginTransaction()
+                        .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
+                        .remove(this)
+                        .commit();
+                break;
+        }
     }
 }

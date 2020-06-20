@@ -1,7 +1,6 @@
 package com.msapps.movieapp.adapters;
 
 import android.content.Context;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
 import com.msapps.movieapp.R;
 import com.msapps.movieapp.model.MoviesResponse;
 
@@ -107,11 +104,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
             view.startAnimation(anim);
             lastPosition = position;
         }
-    }
-
-    private void setZoomInAnimation(View view) {
-        Animation zoomIn = AnimationUtils.loadAnimation(mContext, R.anim.zoom_in);// animation file
-        view.startAnimation(zoomIn);
     }
 
 }

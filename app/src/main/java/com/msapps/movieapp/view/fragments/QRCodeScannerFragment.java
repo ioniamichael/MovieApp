@@ -17,6 +17,8 @@ import com.msapps.movieapp.model.MoviesResponse;
 import com.msapps.movieapp.utils.QRScanner;
 import com.msapps.movieapp.viewmodel.MoviesViewModel;
 
+import java.util.ArrayList;
+
 public class QRCodeScannerFragment extends Fragment implements QRScanner.QRCodeInterface {
 
     private View view;
@@ -24,6 +26,8 @@ public class QRCodeScannerFragment extends Fragment implements QRScanner.QRCodeI
     private MoviesViewModel mMoviesViewModel;
     private TextView mTVMovieTitle;
     private QRScanner qrScanner;
+    private Snackbar snackbar;
+    private ArrayList<String> errorMovies;
 
 
     public interface OnQACodeFragmentStateChangedListener {
@@ -43,8 +47,14 @@ public class QRCodeScannerFragment extends Fragment implements QRScanner.QRCodeI
     @Override
     public void onResume() {
         super.onResume();
+        initViews();
+        initArrayErrorMovies();
         qrScanner.initialiseDetectorsAndSources();
         iCallback.onQACodeFragmentResumed();
+    }
+
+    private void initArrayErrorMovies() {
+        errorMovies = new ArrayList<>();
     }
 
     private void initViewModel() {
@@ -63,12 +73,12 @@ public class QRCodeScannerFragment extends Fragment implements QRScanner.QRCodeI
     public void onQRScanned(MoviesResponse response) {
         if (mMoviesViewModel.getMovieByTitle(response.getTitle()) == null) {
             mMoviesViewModel.addMovie(response);
-            Snackbar snackbar = Snackbar.make(view, "The movie " + response.getTitle() + " added to your list!", Snackbar.LENGTH_LONG);
-            if (snackbar.isShown()) {
+            snackbar = Snackbar.make(view, getResources().getString(R.string.movie_added, response.getTitle()), Snackbar.LENGTH_LONG);
+            if (!snackbar.isShown()) {
                 snackbar.show();
             }
         } else {
-            Snackbar snackbar = Snackbar.make(view, "This movie already exist, please choose another movie!", Snackbar.LENGTH_LONG);
+            snackbar = Snackbar.make(view, getResources().getString(R.string.movie_exist, response.getTitle()), Snackbar.LENGTH_LONG);
             if (!snackbar.isShown()) {
                 snackbar.show();
             }
